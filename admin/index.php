@@ -1,11 +1,11 @@
-<?php include "components/header.php"?>
+<?php include "components/admin_header.php"?>
 
 <body>
 
     <div id="wrapper">
 			
 			<!-- Navigation-->
-      <?php include "components/nav.php"?>
+      <?php include "components/admin_nav.php"?>
        
         <div id="page-wrapper">
 
@@ -32,4 +32,4 @@
     <!-- /#wrapper -->
 
     
-<?php include "components/footer.php"?>
+<?php include "components/admin_footer.php"?>
