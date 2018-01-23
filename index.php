@@ -57,10 +57,10 @@
                         <a href="#">Newer &rarr;</a>
                     </li>
                 </ul>
-
+							<?php	} ?>
             </div>
             
-           <?php	} ?>
+           
 
 					<!--	Sidebar-->
 					<?php include "components/sidebar.php" ?>
