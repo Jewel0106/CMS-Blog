@@ -15,6 +15,17 @@ if(isset($_POST['create_post'])) {
 	$post_comment_count = 4;
 	
 	move_uploaded_file($post_image_temp, "../images/$post_image" );
+	
+	$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
+	
+	$query .= "VALUES({$post_category_id}, '{$post_title}', '{$post_author}',now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}') ";
+	
+	
+	$create_post_query = mysqli_query($connection, $query);
+	
+	if(!create_post_query) {
+		die('Query Failed' . mysqli_error($connection));
+	}
 }
 ?>
 
@@ -33,7 +44,7 @@ if(isset($_POST['create_post'])) {
 		</div>
 		<div class="form-group">
 			<label for="post_status">Post Status</label>
-			<input type="text" name="post_status">
+			<input type="text" class="form-control" name="post_status">
 		</div>
 		<div class="form-group">
 			<label for="image">Post Image</label>
