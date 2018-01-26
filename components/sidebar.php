@@ -32,7 +32,7 @@
 							<div class="col-lg-12">
 									<ul class="list-unstyled">
 										<?php while($row = mysqli_fetch_assoc($select_categories_sidebar)) {
-											$category_title = $row["title"];
+											$category_title = $row["cat_title"];
 
 											echo "<li><a href='#'>{$category_title}</a></li>";
 										}?>

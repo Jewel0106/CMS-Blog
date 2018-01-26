@@ -24,17 +24,18 @@
 								$select_all_posts_query = mysqli_query($connection, $query);
 
 								while($row = mysqli_fetch_assoc($select_all_posts_query)) {
-									$posts_title = $row["title"];
-									$posts_author = $row["author"];
-									$posts_date = $row["date"];
-									$posts_image = $row["image"];
-									$posts_content = $row["content"];
+									$post_id = $row['post_id'];
+									$posts_title = $row["post_title"];
+									$posts_author = $row["post_author"];
+									$posts_date = $row["post_date"];
+									$posts_image = $row["post_image"];
+									$posts_content = $row["post_content"];
 											
 									?>
 
                 <!-- Blog Post -->
                 <h2>
-                    <a href="#"><?php echo $posts_title?></a>
+                    <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $posts_title?></a>
                 </h2>
 									<p class="lead">
 											by <a href="index.php"><?php echo $posts_author?></a>
@@ -48,15 +49,6 @@
                 
                 <hr>
 
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
 							<?php	} ?>
             </div>
             
