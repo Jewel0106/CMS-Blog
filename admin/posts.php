@@ -1,4 +1,6 @@
+
 <?php include "components/admin_header.php"?>
+
 
 <body>
 
@@ -20,11 +22,16 @@
 						<?php
 						if(isset($_GET['source'])) {
 							$source = $_GET['source'];
+						} else {
+							$source = '';
 						}
 						
 						switch($source) {
 								case "add_post";
-									include "components/add_posts.php";
+									include "components/add_post.php";
+								break;
+								case "edit_post";
+									include "components/edit_post.php";
 								break;
 							default:
 								include "components/view_all_posts.php";

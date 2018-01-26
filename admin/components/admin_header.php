@@ -1,8 +1,10 @@
+<!--output buffering used for redirecting-->
+<?php ob_start(); ?>
+
 <?php include "../components/db.php" ?>
 <?php include "functions.php"?>
 
-<!--output buffering used for redirecting-->
-<?php ob_start(); ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

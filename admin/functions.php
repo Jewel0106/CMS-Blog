@@ -9,7 +9,7 @@ function insertCategories() {
 			if($cat_title === "" || empty($cat_title)) {
 				echo "Please fill out this field.";
 			} else {
-				$query = "INSERT INTO categories(title) ";
+				$query = "INSERT INTO categories(cat_title) ";
 				$query .= "VALUE('{$cat_title}') ";
 
 				$create_category_query = mysqli_query($connection, $query);
@@ -29,8 +29,8 @@ function findAllCategories() {
 	$select_categories = mysqli_query($connection, $query);
 
 	while($row = mysqli_fetch_assoc($select_categories)) {
-		$category_id = $row["id"];
-		$category_title = $row["title"];
+		$category_id = $row["cat_id"];
+		$category_title = $row["cat_title"];
 
 		echo "<tr>";
 		echo "<td>{$category_id}</td>";
@@ -47,11 +47,20 @@ function deleteCategories() {
 	if(isset($_GET['delete'])) {
 		$cat_id_delete = $_GET['delete'];
 
-			$query = "DELETE FROM categories WHERE id = {$cat_id_delete} ";
+			$query = "DELETE FROM categories WHERE cat_id = {$cat_id_delete} ";
 			$deleteQuery = mysqli_query($connection, $query);
 			// Refeshes the page
 			header("Location: categories.php");
 	}					
+}
+
+// Confirm Query Function
+function confirmQuery($result) {
+	global $connection;
+	
+	if(!$result) {
+		die("Query Failed" . mysqli_error($connection));
+	}
 }
 
 ?>
