@@ -30,7 +30,6 @@
 								$posts_date = $row["post_date"];
 								$posts_image = $row["post_image"];
 								$posts_content = substr($row["post_content"], 0, 500);
-
 								?>
 
 							<!-- Blog Post -->
@@ -48,7 +47,6 @@
 								<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
 							<hr>
-
 						<?php	} ?>
 					</div>
             
