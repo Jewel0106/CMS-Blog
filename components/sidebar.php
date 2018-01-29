@@ -33,8 +33,9 @@
 									<ul class="list-unstyled">
 										<?php while($row = mysqli_fetch_assoc($select_categories_sidebar)) {
 											$category_title = $row["cat_title"];
+											$cat_id = $row['cat_id'];
 
-											echo "<li><a href='#'>{$category_title}</a></li>";
+											echo "<li><a href='category.php?category=$cat_id'>{$category_title}</a></li>";
 										}?>
 									</ul>
 							</div>
