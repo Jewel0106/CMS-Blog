@@ -36,19 +36,28 @@
 						echo "<td>$comment_author</td>";
 						echo "<td>$comment_content</td>";
 
-						$query = "SELECT * FROM comments WHERE comment_id = {$comment_post_id} ";
-
-						$select_comment_id = mysqli_query($connection, $query);
-						while($row = mysqli_fetch_assoc($select_comment_id)) {
-							$post_id 		= $row["post_id"];
-							$post_title 	= $row["post_title"];
-
-							echo "<td>$post_title</td>";
-						}
+//						$query = "SELECT * FROM comments WHERE comment_id = {$comment_post_id} ";
+//
+//						$select_comment_id = mysqli_query($connection, $query);
+//						while($row = mysqli_fetch_assoc($select_comment_id)) {
+//							$post_id 		= $row["post_id"];
+//							$post_title = $row["post_title"];
+//
+//							echo "<td>$post_title</td>";
+//						}
 
 						echo "<td>$comment_email</td>";
 						echo "<td>$comment_status</td>";
-						echo "<td>Some Title</td>";
+					
+						$query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
+						$select_post_id_query = mysqli_query($connection, $query);
+						
+						while($row = mysqli_fetch_assoc($select_post_id_query)) {
+							$post_id = $row['post_id'];
+							$post_title = $row['post_title'];
+							echo "<td>$post_title</td>";
+						}
+										
 						echo "<td>$comment_date</td>";
 						echo "<td><a href='posts.php?source=edit_post&p_id={$comment_id}'>Approve</a></td>";
 						echo "<td><a href='posts.php?delete={$comment_id}'>Unapprove</a></td>";
