@@ -1,12 +1,20 @@
 
-<?php include "../components/db.php" ?>
-<?php include "functions.php"?>
+<?php include "../components/db.php"; ?>
+<?php include "functions.php"; ?>
 
 <!--output buffering used for redirecting-->
 <?php ob_start(); ?>
 <?php session_start(); ?>
 
+<?php 
+	if(!isset($_SESSION['user_role'])) {
+			header("Location: ../index.php");
+	} 
+	// else if user is admin
 
+	// if user_role == subscriber -> do not allow admin page
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +26,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,3 +45,6 @@
     <![endif]-->
 
 </head>
+
+
+<body>

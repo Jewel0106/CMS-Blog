@@ -1,7 +1,5 @@
 <?php include "components/admin_header.php"?>
 
-<body>
-
     <div id="wrapper">
 			
 			<!-- Navigation-->
@@ -18,7 +16,7 @@
                             Welcome to the Admin Page
                             
                             
-                            <small><?php echo $_SESSION['firstname'] ?></small>
+                            <small><?php echo $_SESSION['username'] ?></small>
                         </h1>
                     </div>
                 </div>
