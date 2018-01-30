@@ -43,8 +43,8 @@
 //						}
 										
 						echo "<td>$user_role</td>";
-						echo "<td><a href='comments.php?approve='>Approve</a></td>";
-						echo "<td><a href='comments.php?unapprove='>Unapprove</a></td>";
+						echo "<td><a href='users.php?admin=${user_id}'>Make Admin</a></td>";
+						echo "<td><a href='users.php?subscriber=${user_id}'>Make Subscriber</a></td>";
 						echo "<td><a href='users.php?delete=${user_id}'>Delete</a></td>";
 					echo "</tr>";
 				}?>
@@ -53,29 +53,29 @@
 
 
 <?php 
-	// Approving comments
-	if(isset($_GET['approve'])) {
+	// Make admin
+	if(isset($_GET['admin'])) {
 		
-		$the_comment_id = $_GET['approve'];
+		$the_user_id = $_GET['admin'];
 		
-		$query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = $the_comment_id ";
-		$approve_query = mysqli_query($connection, $query);
+		$query = "UPDATE users SET user_role = 'admin' WHERE user_id = $the_user_id ";
+		$admin_query = mysqli_query($connection, $query);
 		
-		header("location: comments.php");
+		header("location: users.php");
 	}
 
-	// Unapproving comments
-	if(isset($_GET['unapprove'])) {
+	// Make Subscriber
+	if(isset($_GET['subscriber'])) {
 		
-		$the_comment_id = $_GET['unapprove'];
+		$the_user_id = $_GET['subscriber'];
 		
-		$query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = $the_comment_id ";
-		$unapprove_query = mysqli_query($connection, $query);
+		$query = "UPDATE users SET user_role = 'subscriber' WHERE user_id = $the_user_id ";
+		$subscriber_query = mysqli_query($connection, $query);
 		
-		header("location: comments.php");
+		header("location: users.php");
 	}
 
-	// Deleting Comments
+	// Deleting Users
 	if(isset($_GET['delete'])) {
 		
 		$the_user_id = $_GET['delete'];
