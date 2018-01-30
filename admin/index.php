@@ -36,14 +36,13 @@
 																				$select_all_posts = mysqli_query($connection, $query);
 																				$post_counts = mysqli_num_rows($select_all_posts);
 
-																				echo "<div class='huge'>{$post_counts}</div>";
+																					echo "<div class='huge'>{$post_counts}</div>";
 																			?>
 																				<div>Posts</div>
 																		</div>
 																</div>
 														</div>
 														
-
 														<a href="posts.php">
 																<div class="panel-footer">
 																		<span class="pull-left">View Details</span>
@@ -66,7 +65,7 @@
 																				$select_all_comments = mysqli_query($connection, $query);
 																				$comment_counts = mysqli_num_rows($select_all_comments);
 
-																				echo "<div class='huge'>{$comment_counts}</div>";
+																					echo "<div class='huge'>{$comment_counts}</div>";
 																			?>																 
 																			<div>Comments</div>
 																		</div>
@@ -94,7 +93,7 @@
 																				$select_all_users = mysqli_query($connection, $query);
 																				$user_counts = mysqli_num_rows($select_all_users);
 
-																				echo "<div class='huge'>{$user_counts}</div>";
+																					echo "<div class='huge'>{$user_counts}</div>";
 																			?>
 																				<div> Users</div>
 																		</div>
@@ -122,7 +121,7 @@
 																				$select_all_categories = mysqli_query($connection, $query);
 																				$category_counts = mysqli_num_rows($select_all_categories);
 
-																				echo "<div class='huge'>{$category_counts}</div>";
+																					echo "<div class='huge'>{$category_counts}</div>";
 																			?>
 																				 <div>Categories</div>
 																		</div>
@@ -140,15 +139,48 @@
 								</div>
                 <!-- /.row -->
                 
-
+							 <div class="row">
+									<div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
+							 </div>             
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
-
     
 <?php include "components/admin_footer.php"?>
+
+<!--Javascript for chart-->
+<script type="text/javascript">
+	google.charts.load('current', {'packages':['bar']});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Data', 'Count'],
+			
+			<?php 
+				$element_text = ['Active Post', 'Comments', 'Users', 'Categories'];
+				$element_count = [$post_counts, $comment_counts, $user_counts, $category_counts];
+
+				for($i = 0; $i < 4; $i++) {
+					echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
+				}
+				
+			?>
+
+		]);
+
+		var options = {
+			chart: {
+				title: '',
+				subtitle: '',
+			}
+		};
+
+		var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+		chart.draw(data, google.charts.Bar.convertOptions(options));
+	}
+</script>
