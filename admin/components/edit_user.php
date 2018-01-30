@@ -93,6 +93,21 @@ if(isset($_GET['p_id'])) {
 			<label for="post_status">Post Status</label>
 			<input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status">
 		</div>
+		<div class="form-group">
+			<select name="user_role" id="">
+				<?php 
+					$query = "SELECT * FROM users";
+					$select_users = mysqli_query($connection, $query);
+				
+					while($row = mysqli_fetch_assoc($select_users)) {
+						$user_id = $row["user_id"];
+						$user_role = $row["user_role"];
+						
+						echo "<option value='$user_id'>$user_role</option>";
+					}
+				?>
+			</select>
+		</div>
 		
 		<div class="form-group">
 			<img width="200" src="../images/<?php echo $post_image; ?>" class="img-responsive">
