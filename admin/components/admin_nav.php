@@ -58,13 +58,13 @@
 								<a href="comments.php"><i class="fa fa-fw fa-file"></i> Comments</a>
 						</li>
 						<li>
-								<a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Users<i class="fa fa-fw fa-caret-down"></i></a>
-								<ul id="posts_dropdown" class="collapse">
+								<a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Users<i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="users_dropdown" class="collapse">
 										<li>
-												<a href="#">View All Users</a>
+												<a href="users.php">View All Users</a>
 										</li>
 										<li>
-												<a href="#">Add User</a>
+												<a href="users.php?source=add_user">Add User</a>
 										</li>
 								</ul>
 						</li>

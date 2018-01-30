@@ -19,7 +19,7 @@
 							</h1>
 
 						<?php
-							$query = "SELECT * FROM posts";
+							$query = "SELECT * FROM posts ";
 
 							$select_all_posts_query = mysqli_query($connection, $query);
 
@@ -30,6 +30,12 @@
 								$posts_date = $row["post_date"];
 								$posts_image = $row["post_image"];
 								$posts_content = substr($row["post_content"], 0, 500);
+								$posts_status = $row["post_status"];
+								
+								if($posts_status !== "published") {
+									echo "<h1 class='text-center'>No articles to display</h1>";
+								} else {
+													
 								?>
 
 							<!-- Blog Post -->
@@ -47,7 +53,7 @@
 								<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
 							<hr>
-						<?php	} ?>
+						<?php	} } ?>
 					</div>
             
 					<!--	Sidebar-->
