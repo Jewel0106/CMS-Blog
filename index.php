@@ -43,10 +43,12 @@
 										</p>
 										<p><span class="glyphicon glyphicon-time"></span><?php echo $posts_date?></p>
 										<hr>
-										<img class="img-responsive" src="images/<?php echo $posts_image;?>" alt="">
+										<a href="post.php?p_id=<?php echo $post_id ?>">
+											<img class="img-responsive" src="images/<?php echo $posts_image;?>" alt="">
+										</a>
 										<hr>
 										<p><?php echo $posts_content?></p>
-										<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+										<a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
 									<hr>
 					<?php	} } ?>
