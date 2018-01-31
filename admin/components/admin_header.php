@@ -46,8 +46,6 @@
 		<!--Text Editor-->
 		<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 		
-		<!--Link to Javascript-->
-		<script src="js/scripts.js"></script>
 </head>
 
 

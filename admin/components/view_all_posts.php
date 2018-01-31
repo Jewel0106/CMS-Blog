@@ -58,7 +58,7 @@ if(isset($_POST['checkBoxArray'])) {
 		
 		<thead>
 			<tr>
-				<th><input type="checkbox" class="selectAllBoxes"></th>
+				<th><input type="checkbox" id="selectAllBoxes"></th>
 				<th>Id</th>
 				<th>Author</th>
 				<th>Title</th>
@@ -92,7 +92,7 @@ if(isset($_POST['checkBoxArray'])) {
 
 						echo "<tr>";
 						?>
-						<td><input class='checkboxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id ?>'></td>
+						<td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id ?>'></td>
 						<?php
 						echo "<td>$post_id</td>";
 						echo "<td>$post_author</td>";
