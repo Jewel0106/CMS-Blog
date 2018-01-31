@@ -32,9 +32,7 @@
 								$posts_content = substr($row["post_content"], 0, 500);
 								$posts_status = $row["post_status"];
 								
-								if($posts_status !== "published") {
-									echo "<h1 class='text-center'>No articles to display</h1>";
-								} else {												
+								if($posts_status == "published") {									
 								?>
 									<!-- Blog Post -->
 									<h2>
