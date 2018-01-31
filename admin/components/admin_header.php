@@ -10,10 +10,6 @@
 	if(!isset($_SESSION['user_role'])) {
 			header("Location: ../index.php");
 	} 
-	// else if user is admin
-
-	// if user_role == subscriber -> do not allow admin page
-
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +40,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+		<!--Google Chart-->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		
+		<!--Text Editor-->
+		<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+		
+		<!--Link to Javascript-->
+		<script src="js/scripts.js"></script>
 </head>
 
 

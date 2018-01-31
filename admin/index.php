@@ -185,10 +185,8 @@
 
 				for($i = 0; $i < 7; $i++) {
 					echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
-				}
-				
+				}				
 			?>
-
 		]);
 
 		var options = {
@@ -199,7 +197,6 @@
 		};
 
 		var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
 		chart.draw(data, google.charts.Bar.convertOptions(options));
 	}
 </script>
