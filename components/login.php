@@ -24,6 +24,8 @@ if (isset($_POST['login'])) {
 		echo $db_user_role = $row['user_role'];
 		echo $db_user_password = $row['user_password'];
 	}
+
+	$password = crypt($password, $db_user_password);
 	
 	if($username === $db_user_username && $password === $db_user_password) {
 		
