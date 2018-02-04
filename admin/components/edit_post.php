@@ -77,7 +77,7 @@ if(isset($_GET['p_id'])) {
 					confirmQuery($select_categories);
 				
 					while($row = mysqli_fetch_assoc($select_categories)) {
-						$cat_id 		= $row["cat_id"];
+						$cat_id 	= $row["cat_id"];
 						$cat_title 	= $row["cat_title"];
 						
 						echo "<option value='{$cat_id}'>{$cat_title}</option>";
@@ -124,5 +124,3 @@ if(isset($_GET['p_id'])) {
 			<input class="btn btn-primary" type="submit" name="update_post" value="Update Post">
 		</div>
 </form>
-
-

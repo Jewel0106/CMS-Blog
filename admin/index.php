@@ -153,9 +153,7 @@
 
 									$query = "SELECT * FROM users WHERE user_role = 'subscriber' ";
 										$select_all_subscribers = mysqli_query($connection, $query);
-										$subscriber_counts = mysqli_num_rows($select_all_subscribers);
-
-																					
+										$subscriber_counts = mysqli_num_rows($select_all_subscribers);																			
 								?>
                 
 							 <div class="row">
