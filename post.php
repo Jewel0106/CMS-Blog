@@ -11,18 +11,23 @@
 			 <?php          
 				if(isset($_GET['p_id'])) {
 					$post_id = $_GET['p_id'];
-				 }
 
-				$query = "SELECT * FROM posts WHERE post_id= $post_id";
+					$view_query = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = $post_id ";
+					$send_query = mysqli_query($connection, $view_query);
+				 
+					if(!$send_query) {
+						die("Query failed" . mysqli_error($connection));
+					}
 
-				$select_all_posts_query = mysqli_query($connection, $query);
+					$query = "SELECT * FROM posts WHERE post_id= $post_id";
+					$select_all_posts_query = mysqli_query($connection, $query);
 
-				while($row = mysqli_fetch_assoc($select_all_posts_query)) {
-					$posts_title = $row["post_title"];
-					$posts_author = $row["post_author"];
-					$posts_date = $row["post_date"];
-					$posts_image = $row["post_image"];
-					$posts_content = $row["post_content"];										
+					while($row = mysqli_fetch_assoc($select_all_posts_query)) {
+						$posts_title = $row["post_title"];
+						$posts_author = $row["post_author"];
+						$posts_date = $row["post_date"];
+						$posts_image = $row["post_image"];
+						$posts_content = $row["post_content"];										
 				?>
 
 					<!-- Blog Post -->
@@ -39,7 +44,11 @@
 						<p><?php echo $posts_content?></p>
 
 					<hr>
-				<?php	} ?>
+				<?php	} 
+			
+			} else {
+				header("Location: index.php");
+			} ?>
 
 					<!-- Blog Comments -->
 					<?php 

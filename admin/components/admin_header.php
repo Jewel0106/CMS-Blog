@@ -40,6 +40,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <link href="css/style.css" rel="stylesheet" type="style/css">
+
 		<!--Google Chart-->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		

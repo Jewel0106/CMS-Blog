@@ -15,4 +15,14 @@ $(document).ready(function() {
 			});
 		}
 	});
+
+
+	var loader = "<div id='load-screen'><div id='loading'></div></div>";
+	
+	$("body").prepend(loader);
+
+	$("#load-screen").delay(700).fadeOut(600, function () {
+		$(this).remove();
+		console.log("loader");
+	})
 });
