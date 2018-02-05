@@ -16,7 +16,7 @@
                             Welcome to the Admin Page
                                                        
                             <small><?php echo $_SESSION['username'] ?></small>
-                        </h1>
+												</h1>
                     </div>
                 </div>
                 <!-- /.row -->

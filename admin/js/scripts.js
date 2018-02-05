@@ -16,7 +16,6 @@ $(document).ready(function() {
 		}
 	});
 
-
 	var loader = "<div id='load-screen'><div id='loading'></div></div>";
 	
 	$("body").prepend(loader);
@@ -26,3 +25,14 @@ $(document).ready(function() {
 		console.log("loader");
 	})
 });
+
+function loadUsersOnline() {
+	$.get("functions.php?onlineusers=result", function(data) {
+		$(".usersonline").text(data);
+	});
+}
+
+// Calling our load users function every half second
+setInterval(function() {
+	loadUsersOnline();
+}, 500)

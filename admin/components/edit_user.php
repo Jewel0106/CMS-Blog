@@ -16,44 +16,50 @@ if(isset($_GET['edit_user'])) {
 			$user_image = $row["user_image"];
 			$user_role = $row["user_role"];
 		}
-}
-
-if(isset($_POST['edit_user'])) {
-	$user_firstname = $_POST['user_firstname'];
-	$user_lastname 	= $_POST['user_lastname'];
-	$username 			= $_POST['username'];
-	$user_role 			= $_POST['user_role'];
-	
-//	$post_image 			= $_FILES['image']['name'];
-//	$post_image_temp 	= $_FILES['image']['tmp_name'];
-	
-	$user_email 		= $_POST['user_email'];
-	$user_password 	= $_POST['user_password'];
-	
-//	move_uploaded_file($post_image_temp, "../images/$post_image" );
-
-		$query = "SELECT randSalt FROM users";
-		$select_randsalt_query = mysqli_query($connection, $query);
-
-		$row = mysqli_fetch_array($select_randsalt_query);
-		$salt = $row['randSalt'];
-		$hashed_password = crypt($user_password, $salt);
 
 
-		$query = "UPDATE users SET ";
-		$query .="user_firstname = '{$user_firstname}', ";
-		$query .="user_lastname = '{$user_lastname}', ";
-		$query .="username = '{$username}', ";
-		$query .="user_email = '{$user_email}', ";
-		$query .="user_role = '{$user_role}', ";
-		$query .="user_password = '{$hashed_password}' ";
-		$query .="WHERE user_id = {$the_user_id} ";
+	if(isset($_POST['edit_user'])) {
+		$user_firstname = $_POST['user_firstname'];
+		$user_lastname 	= $_POST['user_lastname'];
+		$username 			= $_POST['username'];
+		$user_role 			= $_POST['user_role'];
+		$user_email 		= $_POST['user_email'];
+		$user_password 	= $_POST['user_password'];
 
-		$edit_user_query = mysqli_query($connection, $query);
-	
-		confirmQuery($edit_user_query);
 
-		echo "<p class='bg-success'>User Updated " . "<a href='user.php'>View User</a></p>";
+			if(!empty($user_password)) {
+				$query_password = "SELECT user_password FROM users WHERE user_id = $the_user_id";
+				$get_user_query = mysqli_query($connection, $query_password);
+
+				confirmQuery($get_user_query);
+
+				$row = mysqli_fetch_array($get_user_query);
+
+				$db_user_password = $row['user_password'];
+			
+
+				if($db_user_password != $user_password) {
+					$hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+				}
+
+				$query = "UPDATE users SET ";
+				$query .="user_firstname = '{$user_firstname}', ";
+				$query .="user_lastname = '{$user_lastname}', ";
+				$query .="username = '{$username}', ";
+				$query .="user_email = '{$user_email}', ";
+				$query .="user_role = '{$user_role}', ";
+				$query .="user_password = '{$hashed_password}' ";
+				$query .="WHERE user_id = {$the_user_id} ";
+
+				$edit_user_query = mysqli_query($connection, $query);
+			
+				confirmQuery($edit_user_query);
+
+				echo "<p class='bg-success'>User Updated " . "<a href='users.php'>View Users</a></p>";
+			}		
+	} 
+}else {
+	header("Location: index.php");
 }
 ?>
 
