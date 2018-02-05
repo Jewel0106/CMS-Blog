@@ -1,15 +1,20 @@
-
+<!--output buffering used for redirecting-->
+<?php ob_start(); ?>
 <?php include "../components/db.php"; ?>
 <?php include "functions.php"; ?>
 
-<!--output buffering used for redirecting-->
-<?php ob_start(); ?>
+
 <?php session_start(); ?>
 
 <?php 
-	if(!isset($_SESSION['user_role'])) {
-			header("Location: ../index.php");
-	} 
+	if(isset($_SESSION['user_role'])) {
+        if($_SESSION['user_role'] !== 'admin') {
+            header("Location: ../index.php");
+        }
+		
+	} else {
+        header("Location: ../index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -42,11 +47,14 @@
 
     <link href="css/style.css" rel="stylesheet" type="style/css">
 
-		<!--Google Chart-->
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		
-		<!--Text Editor-->
-		<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <!--Google Chart-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <!--Text Editor-->
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        
+    <!-- jQuery -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		
 </head>
 

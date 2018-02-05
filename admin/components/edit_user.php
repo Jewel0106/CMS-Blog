@@ -2,7 +2,7 @@
 
 // Get user info based on id
 if(isset($_GET['edit_user'])) {
-	$the_user_id = $_GET['edit_user'];
+	$the_user_id = escape($_GET['edit_user']);
 	
 	$query = "SELECT * FROM users WHERE user_id = $the_user_id";
 		$select_users = mysqli_query($connection, $query);
@@ -92,12 +92,6 @@ if(isset($_GET['edit_user'])) {
 		<label for="post_status">Email</label>
 		<input type="email" class="form-control" name="user_email" value=" <?php echo $user_email; ?>">
 	</div>
-<!--
-	<div class="form-group">
-		<label for="image">User Image</label>
-		<input type="file" class="form-control" name="image">
-	</div>
--->
 	<div class="form-group">
 		<label for="post_tags">Password</label>
 		<input type="password" class="form-control" name="user_password" value=" <?php echo $user_password ?>">

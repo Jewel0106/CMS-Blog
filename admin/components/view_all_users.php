@@ -18,13 +18,13 @@
 				$select_users = mysqli_query($connection, $query);
 
 				while($row = mysqli_fetch_assoc($select_users)) {
-					$user_id = $row["user_id"];
-					$username = $row["username"];
-					$user_firstname = $row["user_firstname"];
-					$user_lastname = $row["user_lastname"];
-					$user_email = $row["user_email"];
-					$user_image = $row["user_image"];
-					$user_role = $row["user_role"];
+					$user_id = escape($row["user_id"]);
+					$username = escape($row["username"]);
+					$user_firstname = escape($row["user_firstname"]);
+					$user_lastname = escape($row["user_lastname"]);
+					$user_email = escape($row["user_email"]);
+					$user_image = escape($row["user_image"]);
+					$user_role = escape($row["user_role"]);
 
 					echo "<tr>";
 						echo "<td>$user_id</td>";

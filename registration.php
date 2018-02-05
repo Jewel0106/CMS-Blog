@@ -1,7 +1,7 @@
 <?php include "components/db.php"; ?>
 <?php include "components/header.php"; ?>
 
- <?php
+<?php
 
 if(isset($_POST['submit'])) {
     $username = $_POST['username'];
