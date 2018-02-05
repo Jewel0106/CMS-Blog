@@ -23,14 +23,27 @@
 
                     while($row = mysqli_fetch_assoc($select_all_categories_query)) {
                         $category_title = $row["cat_title"];
+                        $category_id = $row['cat_id'];
+
+                        $category_class = '';
+                        $contact_class = '';
+                        $contact = 'contact.php';
+
+                        $pageName = basename($_SERVER['PHP_SELF']);
+
+                        if(isset($_GET['category']) && $_GET['category'] == $category_id) {
+                            $category_class = 'active';
+                        } else if  ($pageName == $contact) {
+                            $contact_class = 'active';
+                        }
                         
-                        echo "<li><a href='#'>{$category_title}</a></li>";
+                        echo "<li class='$category_class'><a href='category.php?category={$category_id}'>{$category_title}</a></li>";
                     }
                     ?>
                     <li>
                         <a href="admin">Admin</a>
                     </li>
-                    <li>
+                    <li class="<?php echo $contact_class; ?>">
                         <a href="contact.php">Contact</a>
                     </li>
                    

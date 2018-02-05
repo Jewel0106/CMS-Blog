@@ -28,33 +28,38 @@
 					$page_1 = ($page * $per_page) - $per_page;
 				}
 
-				// Getting the number of posts to determin how many pages we have
-				$post_query_count = "SELECT * FROM posts"; 
+				if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+					$post_query_count = "SELECT * FROM posts"; 
+				} else {
+					// Getting the number of posts to determin how many pages we have
+					$post_query_count = "SELECT * FROM posts WHERE post_status = 'published' "; 
+				}
+
+				
 				$find_count = mysqli_query($connection, $post_query_count);
 				$count = mysqli_num_rows($find_count);
+
+				if($count < 1) {
+					echo "<h1 class='text-center'>No posts available</h1>";
+				} else {
+
 				$count = ceil($count / $per_page);
-			?>
-			<h1 class="page-header">
-				All Blog Posts
-			</h1>
 
-			<?php
-				// getting our posts from the databse and limiting 5 to a page.
-				$query = "SELECT * FROM posts LIMIT $page_1, $per_page";
+					// getting our posts from the databse and limiting 5 to a page.
+					$query = "SELECT * FROM posts LIMIT $page_1, $per_page";
 
-				$select_all_posts_query = mysqli_query($connection, $query);
+					$select_all_posts_query = mysqli_query($connection, $query);
 
-				while($row = mysqli_fetch_assoc($select_all_posts_query)) {
-					$post_id = $row['post_id'];
-					$posts_title = $row["post_title"];
-					$posts_author = $row["post_user"];
-					$posts_date = $row["post_date"];
-					$posts_image = $row["post_image"];
-					$posts_content = substr($row["post_content"], 0, 500);
-					$posts_status = $row["post_status"];
-					
-					if($posts_status == "published") {									
-					?>
+					while($row = mysqli_fetch_assoc($select_all_posts_query)) {
+						$post_id = $row['post_id'];
+						$posts_title = $row["post_title"];
+						$posts_author = $row["post_user"];
+						$posts_date = $row["post_date"];
+						$posts_image = $row["post_image"];
+						$posts_content = substr($row["post_content"], 0, 500);
+						$posts_status = $row["post_status"];
+															
+						?>
 						<!-- Blog Post -->		
 						<h2>
 							<a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $posts_title?></a>
