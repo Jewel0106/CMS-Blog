@@ -119,7 +119,11 @@ if(isset($_POST['checkBoxArray'])) {
 			<tr>
 
 			<?php 
-				$query = "SELECT * FROM posts ORDER BY post_id DESC ";
+				// joinging our posts and categories tables to limit our queries
+				$query = "SELECT posts.post_id, posts.post_author, posts.post_title, posts.post_user, posts.post_category_id, posts.post_status, posts.post_image, posts.post_tags, posts.post_comment_count, posts.post_date, posts.post_views_count, categories.cat_id, categories.cat_title ";
+				$query .=" FROM posts ";
+				$query .=" LEFT JOIN categories ON posts.post_category_id = categories.cat_id";
+
 				$select_posts = mysqli_query($connection, $query);
 
 				while($row = mysqli_fetch_assoc($select_posts)) {
@@ -134,10 +138,12 @@ if(isset($_POST['checkBoxArray'])) {
 					$post_comment_count = $row["post_comment_count"];
 					$post_date = $row["post_date"];
 					$post_views = $row["post_views_count"];
+					$category_id = $row["cat_id"];
+					$category_title = $row["cat_title"];
 
 					echo "<tr>";
 					?>
-					<td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id ?>'></td>
+						<td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id ?>'></td>
 					<?php
 					echo "<td>$post_id</td>";
 
@@ -148,17 +154,7 @@ if(isset($_POST['checkBoxArray'])) {
 					}
 					
 					echo "<td>$post_title</td>";
-
-					$query = "SELECT * FROM categories WHERE cat_id = {$post_category_id} ";
-
-					$select_categories_id = mysqli_query($connection, $query);
-					while($row = mysqli_fetch_assoc($select_categories_id)) {
-						$cat_id 		= $row["cat_id"];
-						$cat_title 	= $row["cat_title"];
-
-						echo "<td>$cat_title</td>";
-					}
-
+					echo "<td>$category_title</td>";
 					echo "<td>$post_status</td>";
 					echo "<td><img class='img-responsive' src='../images/$post_image' alt='post image'></td>";
 					echo "<td>$post_tags</td>";
@@ -174,7 +170,6 @@ if(isset($_POST['checkBoxArray'])) {
 					echo "<td>$post_date</td>";
 					echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
 					echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
-					// echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete?') \" href='posts.php?delete={$post_id}'>Delete</a></td>";
 					echo "<td><a href='javascript:void(0)' rel='$post_id' class='delete_link'>Delete</a></td>";
 					echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to reset the view count?') \" href='posts.php?reset={$post_id}'>{$post_views}</a></td>";
 					echo "</tr>";

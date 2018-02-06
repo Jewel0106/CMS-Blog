@@ -118,7 +118,6 @@
 						$draft_counts = checkStatus('posts', 'post_status', 'draft');
 						$unapproved_counts = checkStatus('comments', 'comment_status', 'unapproved');
 						$subscriber_counts = checkUserRole('users', 'user_role', 'subscriber');
-																		
 					?>
 						
 					<div class="row">
