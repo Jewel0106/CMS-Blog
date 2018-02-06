@@ -1,9 +1,9 @@
-<?php include "components/header.php" ?>
 
-<body>
+<?php include "components/header.php"; ?>
+
 		
 <!--Navigation-->
-<?php include "components/nav.php" ?>
+<?php include "components/nav.php"; ?>
 
 	<!-- Page Content -->
 	<div class="container">
@@ -102,4 +102,4 @@
 				?>
 			</ul>
 
- <?php include "components/footer.php" ?>
+ <?php include "components/footer.php"; ?>

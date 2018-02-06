@@ -1,7 +1,6 @@
 <!-- Blog Sidebar Widgets Column -->
 <div class="col-md-4">
 
-
 	<!-- Blog Search Well -->
 	<div class="well">
 		<h4>Blog Search</h4>
@@ -20,21 +19,28 @@
 	
 	<!-- Login -->
 	<div class="well">
-			<h4>Login</h4>
-				<form action="components/login.php" method="post">
-					<div class="form-group">
-						<input name="username" type="text" class="form-control" placeholder="username">
-					</div>
-					<div class="input-group">
-						<input name="password" type="password" class="form-control" placeholder="password">	
-						<span class="input-group-btn">
-							<button class="btn btn-primary" name="login" type="submit">Login</button>								
-						</span>
-					</div>
-				</form>
-			<p></p>
-			<p class="text-right">Not registered? Sign up <a href="registration.php">Here</a></p>
-	</div>
+		<?php if(isset($_SESSION['user_role'])): ?>
+			<h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
+
+			<a href="components/logout.php" class="btn btn-primary"></a>
+		<?php else: ?>
+				<h4>Login</h4>
+						<form action="components/login.php" method="post">
+							<div class="form-group">
+								<input name="username" type="text" class="form-control" placeholder="username">
+							</div>
+							<div class="input-group">
+								<input name="password" type="password" class="form-control" placeholder="password">	
+								<span class="input-group-btn">
+									<button class="btn btn-primary" name="login" type="submit">Login</button>								
+								</span>
+							</div>
+						</form>
+					<p></p>
+					<p class="text-right">Not registered? Sign up <a href="registration.php">Here</a></p>
+			</div>
+		<?php endif; ?>
+			
 
 	<!-- Blog Categories Well -->
 	<div class="well">
