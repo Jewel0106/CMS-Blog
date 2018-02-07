@@ -1,38 +1,81 @@
+tinymce.init({selector:'textarea'});
 
-tinymce.init({selector: 'textarea'});
+$(document).ready(function(){
 
+	$('#selectAllBoxes').click(function(event){
 
-$(document).ready(function() {
-	
-	$("#selectAllBoxes").click(function(event) {
-		if(this.checked) {
-			$('.checkBoxes').each(function() {
-				this.checked = true;
-			});
-		} else {
-			$('.checkBoxes').each(function() {
-				this.checked = false;
-			});
-		}
+	if(this.checked) {
+
+	$('.checkBoxes').each(function(){
+
+	    this.checked = true;
+
 	});
 
-	var loader = "<div id='load-screen'><div id='loading'></div></div>";
-	
-	$("body").prepend(loader);
+} else {
 
-	$("#load-screen").delay(700).fadeOut(600, function () {
-		$(this).remove();
-		console.log("loader");
-	})
+
+	$('.checkBoxes').each(function(){
+
+	    this.checked = false;
+
+	});
+
+
+	}
+
+	});
+
+
+
+
+
+
+
+// var div_box = "<div id='load-screen'><div id='loading'></div></div>";
+
+// $("body").prepend(div_box);
+
+// $('#load-screen').delay(700).fadeOut(600, function(){
+//    $(this).remove();
+// });
+
+
+
 });
 
+
 function loadUsersOnline() {
-	$.get("functions.php?onlineusers=result", function(data) {
+
+
+	$.get("functions.php?onlineusers=result", function(data){
+
 		$(".usersonline").text(data);
+
+
 	});
+
+
+
 }
 
-// Calling our load users function every half second
-setInterval(function() {
+
+setInterval(function(){
+
 	loadUsersOnline();
-}, 500)
+
+
+},500);
+
+
+
+
+
+
+
+
+
+
+
+
+

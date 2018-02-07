@@ -1,0 +1,12 @@
+{
+    "name": "kaitlynfolsom/cms-blog",
+    "require": {
+        "phpmailer/phpmailer": "^6.0"
+    },
+    "authors": [
+        {
+            "name": "Kaitlyn Folsom",
+            "email": "kaitlynmfolsom@gmail.com"
+        }
+    ]
+}

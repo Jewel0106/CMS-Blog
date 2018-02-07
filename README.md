@@ -1,3 +1,3 @@
 # CMS-Blog
 
-A CMS Blog site built with php.
+A CMS Blog site built using PHP.

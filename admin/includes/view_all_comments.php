@@ -1,38 +1,9 @@
-<?php include "includes/admin_header.php" ?>
-
-    <div id="wrapper">
-        
-  
-
-        <!-- Navigation -->
- 
-        <?php include "includes/admin_navigation.php" ?>
-        
-        
-    
-
-<div id="page-wrapper">
-
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <div class="row">
-        <div class="col-lg-12">
-
-  <h1 class="page-header">
-                Welcome to Comments
-                <small>Author</small>
-            </h1>
-            
-
-
-
 <?php  
 
 if(isset($_POST['checkBoxArray'])) {
 
     
-    foreach(escape($_POST['checkBoxArray']) as $commentValueId ){
+    foreach($_POST['checkBoxArray'] as $commentValueId ){
         
   $bulk_options = $_POST['bulk_options'];
         
@@ -133,17 +104,19 @@ confirmQuery($update_to_delete);
 
   <?php 
     
-    $query = "SELECT * FROM comments WHERE comment_post_id =" . mysqli_real_escape_string($connection,$_GET['id']). " ";
-    $select_comments = mysqli_query($connection,$query);  
+    $query = "SELECT * FROM comments";
+
+    $select_comments = mysqli_query($connection,$query);
+//    $select_comments=  mysqli_query($connection,$query);
 
     while($row = mysqli_fetch_assoc($select_comments)) {
-        $comment_id         = $row['comment_id'];
-        $comment_post_id    = $row['comment_post_id'];
-        $comment_author     = $row['comment_author'];
-        $comment_content    = $row['comment_content'];
-        $comment_email      = $row['comment_email'];
-        $comment_status     = $row['comment_status'];
-        $comment_date       = $row['comment_date'];
+        $comment_id          = $row['comment_id'];
+        $comment_post_id     = $row['comment_post_id'];
+        $comment_author      = $row['comment_author'];
+        $comment_content     = $row['comment_content'];
+        $comment_email       = $row['comment_email'];
+        $comment_status      = $row['comment_status'];
+        $comment_date        = $row['comment_date'];
     
         
         echo "<tr>";
@@ -194,7 +167,7 @@ confirmQuery($update_to_delete);
         echo "<td>$comment_date</td>";
         echo "<td><a href='comments.php?approve=$comment_id'>Approve</a></td>";
         echo "<td><a href='comments.php?unapprove=$comment_id'>Unapprove</a></td>";
-        echo "<td><a href='post_comments.php?delete=$comment_id&id=" . $_GET['id'] ."'>Delete</a></td>";
+        echo "<td><a href='comments.php?delete=$comment_id'>Delete</a></td>";
         echo "</tr>";
    
     }
@@ -249,7 +222,7 @@ if(isset($_GET['delete'])){
     
     $query = "DELETE FROM comments WHERE comment_id = {$the_comment_id} ";
     $delete_query = mysqli_query($connection, $query);
-    header("Location: post_comments.php?id=" . $_GET['id'] ."");
+    header("Location: comments.php");
     
     
 }
@@ -258,25 +231,7 @@ if(isset($_GET['delete'])){
 
 
 
-?> 
-
-
-
-
-            </div>
-        </div>
-        <!-- /.row -->
-
-    </div>
-    <!-- /.container-fluid -->
-
-</div>
-
-     
-        <!-- /#page-wrapper -->
-        
-    <?php include "includes/admin_footer.php" ?>
-
+?>     
             
             
             
